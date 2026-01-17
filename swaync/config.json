@@ -1,0 +1,63 @@
+{
+  "$schema": "/etc/xdg/swaync/configSchema.json",
+  "positionX": "right",
+  "positionY": "top",
+  "notification-body-image-height": 100,
+  "notification-body-image-width": 200,
+  "timeout-low": 3,
+  "timeout": 7,
+  "timeout-critical": 15,
+  "fit-to-screen": false,
+  "control-center-layer": "overlay",
+  "control-center-width": 400,
+  "control-center-height": -1,
+  "notification-window-width": 500,
+  "keyboard-shortcuts": true,
+  "image-visibility": "when-available",
+  "transition-time": 200,
+  "hide-on-clear": true,
+  "hide-on-action": true,
+  "script-fail-notify": true,
+  "text-empty": "Nothing here",
+   "widgets": [
+     "title",
+     "mpris",
+     "volume",
+     "slider#microphone",
+     "backlight",
+     "dnd",
+     "notifications"
+   ],
+  "widget-config": {
+    "title": {
+      "text": "Notification Center",
+      "clear-all-button": true,
+      "button-text": "󰆴 Clear"
+    },
+    "dnd": {
+      "text": "Do Not Disturb"
+    },
+    "label": {
+      "max-lines": 1,
+      "text": "Notification Center"
+    },
+    "mpris": {},
+    "volume": {
+      "label": "󰕾 ",
+      "show-per-app": true,
+      "show-per-app-icon": true,
+      "expand-button-label": "",
+      "collapse-button-label": ""
+    },
+     "slider#microphone": {
+       "label": "󰍬 ",
+       "cmd_setter": "~/.config/hypr/UserScripts/mic_volume.sh set $value",
+       "cmd_getter": "~/.config/hypr/UserScripts/mic_volume.sh get",
+       "min": 0,
+       "max": 100
+     },
+    "backlight": {
+      "label": "󰃟 "
+    }
+  }
+}

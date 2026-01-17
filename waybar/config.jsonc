@@ -1,0 +1,221 @@
+{
+    "reload_style_on_change": true,
+    "layer": "bottom",
+    "position": "top",
+    "height": 40,
+    "spacing": 5,
+    "modules-left": [
+        "custom/power",
+        "clock",
+        "cpu",
+        "memory"
+    ],
+    "modules-center": [
+        "custom/workspace_dumper",
+        "custom/workspaces#1",
+        "custom/workspaces#2",
+        "custom/workspaces#3",
+        "custom/workspaces#4",
+        "custom/workspaces#5",
+        "custom/workspaces#6",
+        "custom/workspaces#7",
+        "custom/workspaces#8",
+        "custom/workspaces#9",
+        "custom/workspaces#10"
+    ],
+    "modules-right": [
+        "tray",
+        "idle_inhibitor",
+        "battery",
+        "wireplumber",
+        "network",
+        "custom/notification"
+    ],
+    "clock": {
+        "interval": 1,
+        "format": "{:%H:%M:%S}",
+        "tooltip-format": "{:%Y-%m-%d}",
+        "on-click": "date +\"%Y-%m-%d\" | wl-copy",
+        "on-click-right": "date +\"%H:%M:%S\"| wl-copy"
+    },
+    "custom/power": {
+        "format": "󰐥 ",
+        "tooltip-format": "wlogout",
+        "on-click": "~/.config/hypr/scripts/power_menu.sh"
+    },
+    "custom/workspace_dumper": {
+        "exec": "python $HOME/.config/waybar/scripts/dump_workspaces.py",
+        "interval": "once"
+    },
+    "custom/workspaces#1": {
+        "format": "{text}",
+        "tooltip": "{tooltip}",
+        "interval": 1,
+        "exec": "awk 'NR==1' /tmp/hyprland_workspaces.txt",
+        "on-click": "hyprctl dispatch workspace 1",
+        "return-type": "json"
+    },
+    "custom/workspaces#2": {
+        "format": "{text}",
+        "tooltip": "{tooltip}",
+        "interval": 1,
+        "exec": "awk 'NR==2' /tmp/hyprland_workspaces.txt",
+        "on-click": "hyprctl dispatch workspace 2",
+        "return-type": "json"
+    },
+    "custom/workspaces#3": {
+        "format": "{text}",
+        "tooltip": "{tooltip}",
+        "interval": 1,
+        "exec": "awk 'NR==3' /tmp/hyprland_workspaces.txt",
+        "on-click": "hyprctl dispatch workspace 3",
+        "return-type": "json"
+    },
+    "custom/workspaces#4": {
+        "format": "{text}",
+        "tooltip": "{tooltip}",
+        "interval": 1,
+        "exec": "awk 'NR==4' /tmp/hyprland_workspaces.txt",
+        "on-click": "hyprctl dispatch workspace 4",
+        "return-type": "json"
+    },
+    "custom/workspaces#5": {
+        "format": "{text}",
+        "tooltip": "{tooltip}",
+        "interval": 1,
+        "exec": "awk 'NR==5' /tmp/hyprland_workspaces.txt",
+        "on-click": "hyprctl dispatch workspace 5",
+        "return-type": "json"
+    },
+    "custom/workspaces#6": {
+        "format": "{text}",
+        "tooltip": "{tooltip}",
+        "interval": 1,
+        "exec": "awk 'NR==6' /tmp/hyprland_workspaces.txt",
+        "on-click": "hyprctl dispatch workspace 6",
+        "return-type": "json"
+    },
+    "custom/workspaces#7": {
+        "format": "{text}",
+        "tooltip": "{tooltip}",
+        "interval": 1,
+        "exec": "awk 'NR==7' /tmp/hyprland_workspaces.txt",
+        "on-click": "hyprctl dispatch workspace 7",
+        "return-type": "json"
+    },
+    "custom/workspaces#8": {
+        "format": "{text}",
+        "tooltip": "{tooltip}",
+        "interval": 1,
+        "exec": "awk 'NR==8' /tmp/hyprland_workspaces.txt",
+        "on-click": "hyprctl dispatch workspace 8",
+        "return-type": "json"
+    },
+    "custom/workspaces#9": {
+        "format": "{text}",
+        "tooltip": "{tooltip}",
+        "interval": 1,
+        "exec": "awk 'NR==9' /tmp/hyprland_workspaces.txt",
+        "on-click": "hyprctl dispatch workspace 9",
+        "return-type": "json"
+    },
+    "custom/workspaces#10": {
+        "format": "{text}",
+        "tooltip": "{tooltip}",
+        "interval": 1,
+        "exec": "awk 'NR==10' /tmp/hyprland_workspaces.txt",
+        "on-click": "hyprctl dispatch workspace 10",
+        "return-type": "json"
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": " <span foreground='red'><sup> </sup></span>",
+            "none": " ",
+            "dnd-notification": " <span foreground='red'><sup> </sup></span>",
+            "dnd-none": " ",
+            "inhibited-notification": " <span foreground='red'><sup> </sup></span>",
+            "inhibited-none": " ",
+            "dnd-inhibited-notification": " <span foreground='red'><sup> </sup></span>",
+            "dnd-inhibited-none": " "
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 10
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰅶 ",
+            "deactivated": "󰛊 "
+        }
+    },
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "󰈀  {ifname}",
+        "format-disconnected": "  Offline",
+        "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}%\nDownload: {bandwidthDownBits}\nUpload: {bandwidthUpBits}"
+    },
+    "cpu": {
+        "interval": 10,
+        "format": "CPU: {usage}%"
+    },
+    "memory": {
+        "interval": 15,
+        "format": "RAM: {percentage}%",
+        "tooltip-format": "RAM: {used:0.1f}GiB/{total:0.1f}GiB ({percentage}%)\nSWAP: {swapUsed:0.1f}GiB/{swapTotal:0.1f}GiB ({swapPercentage}%)"
+    },
+    "battery": {
+        "interval": 1,
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": " {icon} {capacity}% ",
+        "format-charging": " 󰂄 {capacity}% ",
+        "format-icons": [
+            "󰂎",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ]
+    },
+    "wireplumber": {
+        "tooltip": false,
+        "format": "{icon}{volume}%",
+        "format-muted": "󰸈 {volume}%",
+        "format-source": " ",
+        "format-source-muted": " ",
+        "format-bluetooth": " {volume}% {format_source}",
+        "format-bluetooth-muted": "󰂲 {format_source}",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "scroll-step": 1,
+        "format-icons": {
+            "headphone": " ",
+            "headset": " ",
+            "default": [
+                " ",
+                " ",
+                " "
+            ]
+        }
+    },
+
+}

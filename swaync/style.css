@@ -1,0 +1,200 @@
+@define-color bg #2A1F47;
+@define-color bg-hl #3D3366;
+@define-color fg #A97CDD;
+@define-color good #ABC6FD;
+@define-color bad #F2A787;
+
+* {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.control-center .notification-row:focus,
+.control-center .notification-row:hover {
+  opacity: 1;
+  background: @bg;
+}
+
+.notification-row {
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notification,
+.notification-content,
+.notification-action,
+.notification-default-action,
+.inline-reply-entry,
+.widget-title,
+.widget-dnd,
+.widget-label > label,
+.widget-volume,
+.widget-microphone,
+.widget-backlight,
+.widget-mpris,
+.widget-mpris-player,
+.widget-mpris-album-art {
+  border-radius: 10;
+}
+
+.notification {
+  background: @bg;
+  border: 2px solid @fg;
+  margin: -2px -8px;
+}
+
+.close-button {
+  background: @bg-hl;
+  color: @bg;
+  text-shadow: none;
+  padding: 0;
+  margin: 10px;
+  border: none;
+}
+
+.notification:hover .close-button {
+  opacity: 1;
+}
+
+.close-button:hover {
+  background: @bad;
+  box-shadow: none;
+  transition: all 0.15s ease-in-out;
+}
+
+.notification-action {
+  border: 2px solid @fg;
+  border-top: none;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+  color: @good;
+  background: @bg;
+}
+
+.inline-reply-entry {
+  background: @bg;
+  color: @fg;
+  caret-color: @fg;
+  border: 1px solid @good;
+}
+
+.inline-reply-button {
+  margin-top: 4px;
+  margin-left: 4px;
+  background: @bg;
+  border: 1px solid @good;
+  color: @fg;
+}
+
+.inline-reply-button:disabled {
+  background: transparent;
+  color: @bg-hl;
+  border: 1px solid transparent;
+}
+
+.inline-reply-button:hover {
+  background: @bg;
+}
+
+.summary {
+  font-size: 16px;
+  font-weight: 700;
+  background: transparent;
+  color: @good;
+  text-shadow: none;
+}
+
+.time {
+  font-size: 16px;
+  font-weight: 700;
+  background: transparent;
+  color: @fg;
+  text-shadow: none;
+  margin-right: 18px;
+}
+
+.body {
+  font-size: 15px;
+  font-weight: 400;
+  background: transparent;
+  color: @fg;
+  text-shadow: none;
+}
+
+.control-center {
+  background: @bg;
+  border: 2px solid @fg;
+  border-radius: 10;
+  margin: 4px;
+}
+
+.widget-title {
+  color: @fg;
+  background: @bg;
+  font-size: 12pt;
+}
+
+.widget-title > button {
+  font-size: 12pt;
+  color: @fg;
+  background: @bg;
+  box-shadow: none;
+}
+
+.widget-title > button:hover {
+  background: @bad;
+  color: @bg;
+}
+
+.widget-dnd {
+  color: @fg;
+  background: @bg;
+  padding: 5px 10px;
+  margin: 5px 10px;
+}
+
+.widget-dnd > switch {
+  color: @fg;
+  background: @bg;
+  border: 1px solid @fg;
+}
+
+.widget-dnd > switch:checked {
+  background: @good;
+}
+
+.widget-label > label {
+  font-size: 1rem;
+  color: @fg;
+  margin: 10px;
+}
+
+.widget-volume,
+.widget-microphone,
+.widget-backlight,
+.widget-slider {
+  background: @bg;
+  padding: 5px;
+  margin: 5px 10px;
+  font-size: 12pt;
+  color: @fg;
+}
+
+.widget-mpris {
+  color: @fg;
+  background: @bg;
+  padding: 5px 10px;
+  margin: 5px 10px 5px 10px;
+  box-shadow: none;
+}
+
+.widget-mpris > box > button,
+.widget-mpris-player,
+.widget-mpris-album-art {
+  border-radius: 10;
+  box-shadow: none;
+  padding: 5px 10px;
+  margin: 10px 0 0 0;
+}

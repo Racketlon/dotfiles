@@ -1,0 +1,37 @@
+# This .gitignore is designed for a dotfiles repository.
+# It ignores everything (*) except the specified folders and files.
+# This allows tracking only the necessary config directories.
+
+# Ignore everything by default
+*
+
+# Track the .gitignore file itself
+!.gitignore
+
+# Track README and CREDITS files
+!README.md
+!CREDITS.md
+
+# Track specific configuration directories
+!cava
+!cava/**
+!hypr
+!hypr/**
+!kitty
+!kitty/**
+!lazygit
+!lazygit/**
+!nvim
+!nvim/**
+!rofi
+!rofi/**
+!swaylock
+!swaylock/**
+!swaync
+!swaync/**
+!waybar
+!waybar/**
+!wlogout
+!wlogout/**
+!wofi
+!wofi/**

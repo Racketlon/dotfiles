@@ -1,0 +1,88 @@
+{
+    "default": {
+        "empty": "○ ",
+        "undefined-apps": "● "
+    },
+    "programs": [
+        {
+            "name": "zen",
+            "icon": " "
+        },
+        {
+            "name": "firefox",
+            "icon": " "
+        },
+        {
+            "name": "nvim",
+            "icon": " "
+        },
+        {
+            "name": "sublime",
+            "icon": " "
+        },
+        {
+            "name": "tmux",
+            "icon": " "
+        },
+        {
+            "name": "lazygit",
+            "icon": " "
+        },
+        {
+            "name": "ghostty",
+            "icon": " "
+        },
+        {
+            "name": "kitty",
+            "icon": " "
+        },
+        {
+            "name": "konsole",
+            "icon": " "
+        },
+        {
+            "name": "libreoffice",
+            "icon": " "
+        },
+        {
+            "name": "onlyoffice",
+            "icon": " "
+        },
+        {
+            "name": "xournal++",
+            "icon": " "
+        },
+        {
+            "name": "onenote",
+            "icon": "󰝇 "
+        },
+        {
+            "name": "vesktop",
+            "icon": " "
+        },
+        {
+            "name": "discord",
+            "icon": " "
+        },
+        {
+            "name": "nemo",
+            "icon": " "
+        },
+        {
+            "name": "dolphin",
+            "icon": " "
+        },
+        {
+            "name": "yazi",
+            "icon": " "
+        },
+        {
+            "name": "spotify",
+            "icon": " "
+        },
+        {
+            "name": "vlc",
+            "icon": "󰕼 "
+        }
+    ]
+}

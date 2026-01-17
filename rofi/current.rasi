@@ -1,0 +1,122 @@
+/*
+* ROFI color theme
+*
+* Originally based on Base16 Material Color Scheme (https://github.com/ntpeters/base16-materialtheme-scheme),
+* this is now a color theme matching the one of my waybar config.
+*
+* Created by: Tomas Zaluckij (Tomaszal) (https://github.com/Tomaszal/)
+* Modified by: Dave Davenport (https://github.com/DaveDavenport/, https://github.com/davatorium/rofi)
+* Modified by: Gian Scherer (791E) (https://codeberg.org/791e/dotfiles)
+*
+* Copyright (c) Tomas Zaluckij
+* Copyright (c) 2022-2025 Dave Davenport
+*/
+
+* {
+    bg: #2A1F47;
+    bg-hl: #3D3366;
+    fg: #A97CDD;
+    hl: #ABC6FD;
+    warn: #F2A787;
+
+    spacing: 0;
+    background-color: @bg;
+}
+
+window {
+    background-color: @bg;
+    height: 450px;
+    width: 700px;
+    border-color: @fg;
+    border: 1px;
+    border-radius: 15px;
+}
+
+mainbox {
+    children: [inputbar, message, mode-switcher, listview];
+    spacing: 30px;
+    padding: 30px 0;
+    border: 1px;
+    border-color: @bg-hl;
+}
+
+inputbar {
+    padding: 0 30px;
+    children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+    text-color: @fg;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+    margin: 0 1ch 0 0;
+    text-color: @fg;
+}
+
+entry {
+    text-color: @fg;
+}
+
+case-indicator {
+    text-color: @fg;
+}
+
+mode-switcher, message {
+    border: 1px 0;
+    border-color: @bg-hl;
+}
+
+button, textbox {
+    background-color: @bg-hl;
+    text-color: @fg;
+    padding: 5px;
+}
+
+button selected {
+    background-color: @bg;
+}
+
+listview {
+    scrollbar: true;
+    margin: 0 10px 0 30px;
+}
+
+scrollbar {
+    background-color: @bg;
+    handle-color: @bg-hl;
+    handle-width: 10px;
+    border: 0 1px;
+    border-color: @bg-hl;
+    margin: 0 0 0 20px;
+}
+
+element {
+    padding: 5px;
+    spacing: 5px;
+    highlight: bold underline;
+    children: [element-icon, element-text];
+}
+element-text, element-icon {
+    background-color : inherit;
+    text-color	     : inherit;
+    foreground-color : inherit;
+}
+
+element selected {
+    background-color: @bg-hl;
+}
+
+element normal normal, element selected normal, element alternate normal {
+    text-color: @fg;
+}
+
+element normal urgent, element selected urgent, element alternate urgent {
+    text-color: @fg;
+}
+
+element normal active, element selected active, element alternate active {
+    text-color: @fg;
+}
