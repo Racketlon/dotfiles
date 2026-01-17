@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# Wallust: derive colors from the current wallpaper and update templates
+# Wal: derive colors from the current wallpaper and update Hyprland borders
 # Usage: WallustSwww.sh [absolute_path_to_wallpaper]
 
 set -euo pipefail
@@ -54,6 +54,8 @@ ln -sf "$wallpaper_path" "$rofi_link" || true
 mkdir -p "$(dirname "$wallpaper_current")"
 cp -f "$wallpaper_path" "$wallpaper_current" || true
 
-# Run wallust (silent) to regenerate templates defined in ~/.config/wallust/wallust.toml
-# -s is used in this repo to keep things quiet and avoid extra prompts
-wallust run -s "$wallpaper_path" || true
+# Run wal to derive colors from the wallpaper
+/home/andreas/venv/bin/wal -i "$wallpaper_path" --backend colorthief || true
+
+# Run postrun to update borders
+~/.config/wal/postrun || true

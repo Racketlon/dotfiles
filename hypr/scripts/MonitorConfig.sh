@@ -61,39 +61,56 @@ fi
 if [ ${#monitors[@]} -eq 1 ]; then
   options=("Laptop Only: ${monitors[0]},preferred,0x0,1")
 elif [ ${#monitors[@]} -eq 2 ]; then
+  # Assume monitors[0] is laptop, monitors[1] is external
   laptop="${monitors[0]}"
   external="${monitors[1]}"
-  # Get laptop width
+  # Get widths
   laptop_width=$(hyprctl monitors | grep "$laptop" -A 5 | grep 'Size' | awk '{print $2}' | cut -dx -f1)
   if [ -z "$laptop_width" ]; then laptop_width=1920; fi  # fallback
+  external_width=$(hyprctl monitors | grep "$external" -A 5 | grep 'Size' | awk '{print $2}' | cut -dx -f1)
+  if [ -z "$external_width" ]; then external_width=1920; fi  # fallback
   options=(
     "Laptop Only: $laptop,preferred,0x0,1 ; $external,disable"
     "External Only: $external,preferred,0x0,1 ; $laptop,disable"
     "Extend Right: $laptop,preferred,0x0,1 ; $external,preferred,${laptop_width}x0,1"
-    "Extend Left: $laptop,preferred,${laptop_width}x0,1 ; $external,preferred,0x0,1"
-    "Mirror: $laptop,preferred,0x0,1,mirror,$external"
+    "Extend Left: $laptop,preferred,${external_width}x0,1 ; $external,preferred,0x0,1"
+    "Mirror: $laptop,preferred,0x0,1,mirror,$external ; $external,preferred,0x0,1"
   )
 fi
 
 # Use rofi to select
 selected=$(printf '%s\n' "${options[@]}" | rofi -dmenu -p "Monitor Setup")
 
-if [ -n "$selected" ]; then
-  # Extract the setup name before :
-  setup_name=$(echo "$selected" | cut -d: -f1)
-  # Extract the config part after :
-  config_part=$(echo "$selected" | cut -d: -f2- | sed 's/^ *//')
-  # Split by ; and apply each
-  IFS=';' read -ra configs <<< "$config_part"
-  for config in "${configs[@]}"; do
-    config=$(echo "$config" | sed 's/^ *//')
-    if [ -n "$config" ]; then
-      apply_config "$config"
-    fi
-  done
-  # Set workspace rules
-  set_workspace_rules "$setup_name"
-  notify_user "$IDIR/ja.png" "Monitor Setup Applied" "$selected"
+ if [ -n "$selected" ]; then
+   # Extract the setup name before :
+   setup_name=$(echo "$selected" | cut -d: -f1)
+   # Extract the config part after :
+   config_part=$(echo "$selected" | cut -d: -f2- | sed 's/^ *//')
+   # Disable all monitors first to avoid overlap
+   for mon in "${monitors[@]}"; do
+     hyprctl keyword monitor "$mon,disable"
+   done
+   sleep 0.5
+   # Split by ; and apply each
+   IFS=';' read -ra configs <<< "$config_part"
+   for config in "${configs[@]}"; do
+     config=$(echo "$config" | sed 's/^ *//')
+     if [ -n "$config" ]; then
+       apply_config "$config"
+       sleep 0.5  # Allow time for config to apply
+     fi
+   done
+   # Wait for configs to apply
+   sleep 1
+   # Set workspace rules
+   set_workspace_rules "$setup_name"
+   # Restart waybar to show on new monitors
+   pkill waybar
+   sleep 0.1
+   waybar &
+   # Re-apply border colors after monitor change
+   ~/.config/wal/postrun || true
+   notify_user "$IDIR/ja.png" "Monitor Setup Applied" "$selected"
 else
   notify_user "$IDIR/note.png" "Monitor Setup" "Cancelled"
 fi

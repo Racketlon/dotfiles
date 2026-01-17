@@ -25,6 +25,9 @@ if [[ "$WALLPAPER_TO_SET" =~ \.(mp4|mkv|mov|webm|gif|MP4|MKV|MOV|WEBM|GIF)$ ]]; 
     pkill mpvpaper 2>/dev/null || true
     # Get all monitor names
     monitors=$(hyprctl monitors -j | jq -r '.[].name')
+    # Update the symlink
+    ln -sf "$WALLPAPER_TO_SET" "$HOME/.config/hypr/current_wallpaper"
+
     # Set video/GIF wallpaper to each monitor using mpvpaper
     for monitor in $monitors; do
         mpvpaper "$monitor" -o "load-scripts=no no-audio --loop --video-unscaled=no --keepaspect=no" "$WALLPAPER_TO_SET" &
@@ -39,4 +42,13 @@ if ! pgrep -x "swww-daemon" > /dev/null; then
 fi
 # Set image wallpaper using swww (to all monitors)
 swww img "$WALLPAPER_TO_SET" --transition-type outer --transition-duration 2.0 --transition-fps 60
+
+# Update the symlink
+ln -sf "$WALLPAPER_TO_SET" "$HOME/.config/hypr/current_wallpaper"
+
+# Update colors
+/home/andreas/venv/bin/wal -i "$WALLPAPER_TO_SET" --backend colorthief || true
+
+# Run postrun to update borders
+~/.config/wal/postrun || true
 fi

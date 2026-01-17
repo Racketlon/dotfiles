@@ -182,11 +182,11 @@ apply_image_wallpaper() {
 
    swww img "$image_path" $SWWW_PARAMS
 
-  # Run additional scripts (pass the image path to avoid cache race conditions)
-  "$SCRIPTSDIR/WallustSwww.sh" "$image_path"
-  sleep 2
-  "$SCRIPTSDIR/Refresh.sh"
-  sleep 1
+   # Update the symlink
+   ln -sf "$image_path" "$HOME/.config/hypr/current_wallpaper"
+
+   # Run additional scripts (pass the image path to avoid cache race conditions)
+   "$SCRIPTSDIR/WallustSwww.sh" "$image_path"
 
   set_sddm_wallpaper
 }
@@ -209,8 +209,11 @@ apply_video_wallpaper() {
     mpvpaper "$monitor" -o "load-scripts=no no-audio --loop --video-unscaled=no --keepaspect=no" "$video_path" &
   done
 
-  # Save the current wallpaper path
-  cp -f "$video_path" "$wallpaper_current"
+   # Update the symlink
+   ln -sf "$video_path" "$HOME/.config/hypr/current_wallpaper"
+
+   # Save the current wallpaper path
+   cp -f "$video_path" "$wallpaper_current"
 }
 
 # Main function

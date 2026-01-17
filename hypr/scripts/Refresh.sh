@@ -22,10 +22,7 @@ for _prs in "${_ps[@]}"; do
   fi
 done
 
-# added since wallust sometimes not applying
-killall -SIGUSR2 waybar
-# Added sleep for GameMode causing multiple waybar
-sleep 0.1
+# Waybar will be restarted below
 
 # quit ags & relaunch ags
 #ags -q && ags &
