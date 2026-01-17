@@ -13,7 +13,6 @@ This repository contains my personal dotfiles and configuration files for a Hypr
 - **Wofi**: Alternative launcher
 - **Cava**: Audio visualizer
 - **Lazygit**: Git TUI
-- **Matugen**: Color scheme generator
 
 ## Installation
 
@@ -63,4 +62,3 @@ See [CREDITS.md](./CREDITS.md) for attribution to original authors and sources.
 ## License
 
 This repository is shared for educational purposes. Please check individual licenses for components used.
-
