@@ -47,7 +47,11 @@ swww img "$WALLPAPER_TO_SET" --transition-type outer --transition-duration 2.0 -
 ln -sf "$WALLPAPER_TO_SET" "$HOME/.config/hypr/current_wallpaper"
 
 # Update colors
-/home/andreas/venv/bin/wal -i "$WALLPAPER_TO_SET" --backend colorthief || true
+echo "Running wal on $WALLPAPER_TO_SET" > /tmp/color_update.log
+/home/andreas/venv/bin/wal -i "$WALLPAPER_TO_SET" --backend haishoku >> /tmp/color_update.log 2>&1 || echo "Wal failed" >> /tmp/color_update.log
+# Run postrun
+echo "Running postrun" >> /tmp/color_update.log
+~/.config/wal/postrun >> /tmp/color_update.log 2>&1 || echo "Postrun failed" >> /tmp/color_update.log
 
 # Run postrun to update borders
 ~/.config/wal/postrun || true

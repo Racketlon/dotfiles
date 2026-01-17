@@ -55,7 +55,8 @@ mkdir -p "$(dirname "$wallpaper_current")"
 cp -f "$wallpaper_path" "$wallpaper_current" || true
 
 # Run wal to derive colors from the wallpaper
-/home/andreas/venv/bin/wal -i "$wallpaper_path" --backend colorthief || true
-
+echo "Running wal on $wallpaper_path" > /tmp/color_update.log
+/home/andreas/venv/bin/wal -i "$wallpaper_path" --backend haishoku >> /tmp/color_update.log 2>&1 || echo "Wal failed" >> /tmp/color_update.log
 # Run postrun to update borders
-~/.config/wal/postrun || true
+echo "Running postrun" >> /tmp/color_update.log
+~/.config/wal/postrun >> /tmp/color_update.log 2>&1 || echo "Postrun failed" >> /tmp/color_update.log
